@@ -166,6 +166,8 @@ vi /etc/modprobe.d/modprobe.conf
 pacman -S xorg-server xorg-xinit
 pacman -S xf86-video-intel alsa-utils chromium  openssh
 
+# $ curl -s https://gist.githubusercontent.com/Tadly/0e65d30f279a34c33e9b/raw/pacaur_install.sh | bash
+
 # exit arch-chroot
 exit
 
