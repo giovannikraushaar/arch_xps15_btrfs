@@ -143,6 +143,23 @@ editor    0
 
 pacman -S bash-completion
 
+##  Snapshot time
+You can create snapshots like so
+
+```btrfs subvolume snapshot -r / /.snapshots/@root-`date +%F-%R` ```
+
+And to restore from snapshot you just delete the currently used @root and replace it with a earlyer snapshot
+
+`mount /dev/nvme0n1p2 /mnt`
+
+`btrfs subvolume delete /mnt/@root`
+
+`brtfs subvolume snapshot /mnt/@snapshots/@root-2015-08-10-20:19 /mnt/@root`
+
+and then just reboot :)
+
+you will probably want to use [Snapper](https://wiki.archlinux.org/index.php/Snapper) or something like that to manage your snapshots.
+
 vi /etc/modprobe.d/modprobe.conf
 # content
 
