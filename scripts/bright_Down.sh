@@ -9,8 +9,8 @@ if (($brightness <=120000 )); then
 	let brightness=$brightness-10000
 fi
 
-if (($brightness <0)); then
-	  let brightness=0;
+if (($brightness <7000)); then
+	  let brightness=10000;
 fi
 echo "echo $brightness > /sys/class/backlight/intel_backlight/brightness" | sudo bash
 
