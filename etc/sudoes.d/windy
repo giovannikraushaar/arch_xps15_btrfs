@@ -1,0 +1,3 @@
+windy ALL=(ALL) ALL
+windy xcloud = NOPASSWD:/usr/bin/bright_Down.sh
+windy xcloud = NOPASSWD:/usr/bin/bright_Up.sh
