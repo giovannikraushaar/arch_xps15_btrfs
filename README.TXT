@@ -24,46 +24,42 @@ mkfs.vfat -F 32 -n BOOT /dev/nvme0n1p1
 
 
 # Format BTRFS filesystem
-mkfs.btrfs -L ARCH /dev/nvme**
+mkfs.btrfs -L ARCH /dev/nvme0n1p2
 
 # Mount BTRFS
-mount /dev/mapper/root /mnt
+mount /dev/nvme0n1p2 /mnt
 cd /mnt
 
 # Create BTRFS subvolumes + mount directories
 btrfs subvolume create @
 
 mkdir -p @/home
-btrfs subvolume create @home
-
 mkdir -p @/.snapshots
-btrfs subvolume create @snapshots
-
 mkdir -p @/tmp
-btrfs subvolume create @tmp
-
-
-
 mkdir -p @/var
-btrfs subvolume create @var
-
 mkdir -p @var/tmp
-btrfs subvolume create @var-tmp
-
 mkdir -p @var/cache/pacman/pkg
+
+
+
+btrfs subvolume create @home
+btrfs subvolume create @snapshots
+btrfs subvolume create @tmp
+btrfs subvolume create @var
+btrfs subvolume create @var-tmp
 btrfs subvolume create @var-pkg
 
 
-umount /mnt
+umount -R /mnt
 
 # Mount BTRFS subvolumes
-mount -o subvol=@,compress=lzo,space_cache,noatime,ssd /dev/mapper/root /mnt
-mount -o subvol=@home,compress=lzo,space_cache,noatime,ssd /dev/mapper/root /mnt/home
-mount -o subvol=@snapshots,compress=lzo,space_cache,noatime,ssd /dev/mapper/root /mnt/.snapshots
-mount -o subvol=@tmp,compress=lzo,space_cache,noatime,ssd /dev/mapper/root /mnt/tmp
-mount -o subvol=@var,compress=lzo,space_cache,noatime,ssd /dev/mapper/root /mnt/var
-mount -o subvol=@var-tmp,compress=lzo,space_cache,noatime,ssd /dev/mapper/root /mnt/var/tmp
-mount -o subvol=@var-cache-pacman-pkg,compress=lzo,space_cache,noatime,ssd /dev/mapper/root /mnt/var/cache/pacman/pkg
+mount -o compress=lzo,space_cache,noatime,ssd,subvol=@, /dev/mapper/root /mnt
+mount -o compress=lzo,space_cache,noatime,ssd,subvol=@home /dev/mapper/root /mnt/home
+mount -o compress=lzo,space_cache,noatime,ssd,subvol=@snapshots /dev/mapper/root /mnt/.snapshots
+mount -o compress=lzo,space_cache,noatime,ssd,subvol=@tmp /dev/mapper/root /mnt/tmp
+mount -o compress=lzo,space_cache,noatime,ssd,subvol=@var /dev/mapper/root /mnt/var
+mount -o compress=lzo,space_cache,noatime,ssd,subvol=@var-rmp /dev/mapper/root /mnt/var/tmp
+mount -o compress=lzo,space_cache,noatime,ssd,subvol=@var-cache /dev/mapper/root /mnt/var/cache/pacman/pkg
 
 # Mount EFI partition
 mkdir /mnt/boot
@@ -71,7 +67,7 @@ mount /dev/nvme0n1p1 /mnt/boot
 
 
 # Install the base system plus a few packages
-pacstrap /mnt base base-devel btrfs-progs fish vim git   wpa_supplicant dialog iw
+pacstrap /mnt base base-devel btrfs-progs fish vim git  wpa_supplicant dialog iwd
 
 genfstab -Up /mnt >>/mnt/etc/fstab
 
@@ -85,7 +81,7 @@ echo LANG=en_US.UTF-8 > /etc/locale.conf
 
 
 # Setup time
-ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+ln -s /usr/share/zoneinfo/America/New_york /etc/localtime
 hwclock --systohc
 
 # Generate required locales
@@ -127,7 +123,7 @@ pacman -S intel-ucode
 ---
 /boot/loader/entries/arch.conf
 ---
-title          Arc
+title          Arch
 linux          /vmlinuz-linux
 initrd		/intel-ucode.img
 initrd         /initramfs-linux.img
