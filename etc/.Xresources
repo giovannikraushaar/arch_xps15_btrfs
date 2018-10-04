@@ -1,0 +1,86 @@
+! URXVT GENERAL CONFIG
+!------------------------------------------------
+URxvt.geometry: 150x35
+URxvt.imLocale: en_US.UTF-8
+
+! URXVT FONTS
+!------------------------------------------------
+URxvt.font:xft:Monaco:bold:size=9
+URxvt.boldFont:xft:Monaco:bold:size=9
+URxvt.italicfont:xft:Monaco:italic:size=9
+URxvt.bolditalicFont:xft:Monaco:bold:italic:size=9
+URxvt*letterSpace: -1
+URxvt*allow_bold: true
+URxvt.depth:       32
+*internalBorder:        8 	
+*externalBorder:        8
+
+! URXVT FONT SETTINGS
+!------------------------------------------------
+Xft.dpi:        97
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintsfull
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+URxvt*perl-ext:
+URxvt*perl-ext-common:
+
+!------------------------------------------------
+URxvt.iso14755: False
+! URXVT SCROLLBAR AND CURSOR STYLE
+!------------------------------------------------
+URxvt.saveLines: 1524
+URxvt.scrollBar: false
+URxvt.scrollstyle: plain 
+!rxvt
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+!==================================================
+URxvt.keysym.Shift-Up: command:\033]720;1\007
+URxvt.keysym.Shift-Down: command:\033]721;1\007
+
+! vim: set filetype=xdefaults :
+*foreground: #D7D0C7
+*background: #151515
+
+
+! black
+*.color0:       #000000
+*.color8:       #4d4d4d
+
+!! red
+*.color1:       #cc2c2b
+.color9:       #e21613
+!
+! green
+*.color2:       #5bcb4b
+*.color10:      #00fd56
+
+! yellow
+*.color3:       #f8f400
+*.color11:      #fffe5a
+
+! blue
+*.color4:       #243bd1
+*.color12:      #556fff
+
+! magenta
+*.color5:       #b31ab8
+*.color13:      #fd28ff
+
+! cyan
+*.color6:       #23cdcd
+*.color14:      #14ffff
+
+! white
+*.color7:       #e4e4e4
+*.color15:      #d3d3d3
+
+URxvt*borderColor:        #151515
+URxvt*colorBD:            #ffffff
+URxvt*cursorColor:        #ff8939
+URxvt*cursorColor2:       #151515
+!
+cursor.theme:Capitaine Cursors
