@@ -88,7 +88,7 @@ workspace_auto_back_and_forth yes
 bindsym $mod+z workspace back_and_forth
 
 #brightness control
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo bright_Up.sh
+bindsym XF86MonBrightnessUp   exec --no-startup-id sudo bright_Up.sh
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo bright_Down.sh
 
 
