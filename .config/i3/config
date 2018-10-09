@@ -88,11 +88,14 @@ workspace_auto_back_and_forth yes
 bindsym $mod+z workspace back_and_forth
 
 #brightness control
-bindsym XF86MonBrightnessUp   exec --no-startup-id sudo bright_Up.sh
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo bright_Down.sh
+#bindsym XF86MonBrightnessUp   exec --no-startup-id sudo bright_Up.sh
+#bindsym XF86MonBrightnessDown exec --no-startup-id sudo bright_Down.sh
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+#bindcode 233 exec --no-startup-id sudo bright_Up.sh
+#bindcode 232 exec --no-startup-id sudo bright_Down.sh
 
-
-bindsym XF86Display exec --no-startup-id xset dpms force off
+#bindsym XF86Display exec --no-startup-id xset dpms force off
 # focus the parent container
 bindsym $mod+a focus parent
 ######grouping workspaces+name####
